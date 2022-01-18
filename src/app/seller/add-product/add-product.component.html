@@ -1,0 +1,198 @@
+<div class="wrapper">
+  <div class="container">
+    <h2>{{ 'AddProduct' | translate }}</h2>
+    <form class="centerCard" [formGroup]="form" (ngSubmit)="submit()">
+      <div
+        class="form-group"
+        [ngClass]="{
+          invalid: form.get('name')!.touched && form.get('name')!.invalid
+        }"
+      >
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="{{ 'Name' | translate }} *"
+          class="form-control"
+        />
+        <div
+          *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+          class="validation"
+        >
+          <small *ngIf="form.get('name')!.errors!['required']">
+            {{ 'EnterName' | translate }}
+          </small>
+          <small
+            *ngIf="
+              form.get('name')!.errors!['minlength'] ||
+              form.get('name')!.errors!['maxlength']
+            "
+          >
+            {{ 'NameValidation' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          invalid: form.get('price')!.touched && form.get('price')!.invalid
+        }"
+      >
+        <input
+          id="price"
+          type="number"
+          formControlName="price"
+          placeholder="{{ 'Price' | translate }} $ *"
+          class="form-control"
+          (keypress)="decimalFilter($event)"
+        />
+        <div
+          class="validation"
+          *ngIf="form.get('price')!.touched && form.get('price')!.invalid"
+        >
+          <small *ngIf="form.get('price')!.errors!['required']">
+            {{ 'EnterPrice' | translate }}
+          </small>
+          <small *ngIf="form.get('price')!.errors!['max'] || form.get('price')!.errors!['min']">
+            {{ 'PriceValidation' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          invalid:
+            form.get('category')!.touched && form.get('category')!.invalid
+        }"
+      >
+        <select
+          name="category"
+          class="form-control"
+          id="category"
+          formControlName="category"
+        >
+          <option value="" disabled selected>{{ 'Category' | translate }} ... *</option>
+          <option value="Fruits">{{ 'Fruits' | translate }}</option>
+          <option value="Vegetables">{{ 'Vegetables' | translate }}</option>
+          <option value="Berries">{{ 'Berries' | translate }}</option>
+          <option value="Honey">{{ 'Honey' | translate }}</option>
+          <option value="Meat">{{ 'Meat' | translate }}</option>
+          <option value="Dairy products">{{ 'Dairy products' | translate }}</option>
+          <option value="Poultry">{{ 'Poultry' | translate }}</option>
+          <option value="Other">{{ 'Other' | translate }}</option>
+          <option value="Bread and confectionery">{{ 'Bread and confectionery' | translate }}</option>
+        </select>
+        <div
+          class="validation"
+          *ngIf="form.get('category')!.touched && form.get('category')!.invalid"
+        >
+          <small *ngIf="form.get('category')!.errors!['required']">
+            {{ 'ChooseCategory' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          invalid:
+            form.get('description')!.touched && form.get('description')!.invalid
+        }"
+      >
+        <input
+          id="description"
+          type="text"
+          formControlName="description"
+          placeholder="{{ 'ShortDescription' | translate }} *"
+          class="form-control"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            form.get('description')!.touched && form.get('description')!.invalid
+          "
+        >
+          <small *ngIf="form.get('description')!.errors!['required']">
+            {{ 'ShortDescription' | translate }}
+          </small>
+          <small
+            *ngIf="
+              form.get('description')!.errors!['minlength'] ||
+              form.get('description')!.errors!['maxlength']
+            "
+          >
+            {{ 'ShortDescriptionValidation' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          invalid: form.get('details')!.touched && form.get('details')!.invalid
+        }"
+      >
+        <textarea
+          id="details"
+          type="text"
+          formControlName="details"
+          placeholder="{{ 'Description' | translate }} *"
+          class="form-control"
+          ng-required="true"
+        ></textarea>
+        <div
+          class="validation"
+          *ngIf="form.get('details')!.touched && form.get('details')!.invalid"
+        >
+          <small *ngIf="form.get('details')!.errors!['required']">
+            {{ 'EnterDescription' | translate }}
+          </small>
+          <small
+            *ngIf="
+              form.get('details')!.errors!['minlength'] ||
+              form.get('details')!.errors!['maxlength']
+            "
+          >
+            {{ 'DescriptionValidation' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          invalid: form.get('photo')!.touched && form.get('photo')!.invalid
+        }"
+      >
+        <input
+          id="photo"
+          type="file"
+          formControlName="photo"
+          placeholder="{{ 'Photo' | translate }} *"
+          class="form-control"
+          (change)="onSelectFile($event)"
+        />
+        <div
+          class="validation"
+          *ngIf="form.get('photo')!.touched && form.get('photo')!.invalid"
+        >
+          <small *ngIf="form.get('photo')!.errors!['required']">
+            {{ 'AddPhoto' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div class="w-100 p-3 text-center">
+        <img [src]="url" class="mw-100" /> <br />
+      </div>
+
+      <div class="submit">
+        <button type="submit" class="btn btn-login" [disabled]="form.invalid">
+          {{ 'Submit' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

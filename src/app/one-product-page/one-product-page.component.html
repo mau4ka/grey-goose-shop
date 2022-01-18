@@ -1,0 +1,24 @@
+<div class="wrapper">
+<div *ngIf="isLoading">
+  <app-preloader></app-preloader>
+</div>
+<div *ngIf="product && !isLoading">
+  <div class="container">
+    <div class="imgWrapper">
+      <img class="w-100" [src]="product!.photo" alt="" />
+    </div>
+    <div class="infoWrapper">
+      <h1 class="text-center">
+        {{ product!.name }}
+      </h1>
+      <p>{{ 'Category' | translate }}: {{ product!.category | translate}}</p>
+      <p>{{ 'Price' | translate }}: {{ product!.price }} $</p>
+      <p>{{ 'Description' | translate }}: {{ product!.details }}</p>
+      <div *ngIf="auth.isLogin() && localStorage.getItem('grey-role') === 'seller' && sellerId === product.seller_id ">
+        <button class="btn" routerLink="/seller/update/{{product.id}}">{{ 'ChangeProduct' | translate }}</button>
+        <button class="btn" (click)="deleteProduct()">{{ 'Delete' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

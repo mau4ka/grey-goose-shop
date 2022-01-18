@@ -1,0 +1,159 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="registerSeller">
+      <a routerLink="/register/seller"> {{ 'RegLikeVendor' | translate }}</a>
+    </div>
+
+    <h2>{{ 'Customer' | translate }}</h2>
+
+    <div *ngIf="isLoading" class="spinner">
+      <app-preloader></app-preloader>
+    </div>
+    <div class="alert alert-danger" *ngIf="authService.error$ | async as error">
+      {{ error }}
+    </div>
+
+    <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
+      <div class="form-group">
+        <label style="width: 100%">
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            ngModel
+            name="name"
+            #name="ngModel"
+            placeholder="{{ 'Name' | translate }}"
+            minlength="3"
+            maxlength="20"
+            required
+            [disabled]="isLoading"
+          />
+        </label>
+      </div>
+      <span *ngIf="!name.valid && name.touched" class="help-block"
+        >{{ 'UserNameValidation' | translate }}</span
+      >
+
+      <div class="form-group">
+        <label style="width: 100%">
+          <select
+            name="country"
+            class="form-control"
+            id="country"
+            ngModel
+            #country="ngModel"
+            required
+            [disabled]="isLoading"
+          >
+            <option
+              value=""
+              label="{{ 'ChooseCountry' | translate }} ... "
+              selected="selected"
+            >
+              {{ "ChooseCountry" | translate }} ...
+            </option>
+            <option value="Armenia">{{ "Armenia" | translate }}</option>
+            <option value="Belarus">{{ "Belarus" | translate }}</option>
+            <option value="Hungary">{{ "Hungary" | translate }}</option>
+            <option value="Kazakhstan">{{ "Kazakhstan" | translate }}</option>
+            <option value="Russia">{{ "Russia" | translate }}</option>
+            <option value="Ukraine">{{ "Ukraine" | translate }}</option>
+          </select>
+        </label>
+      </div>
+      <span *ngIf="!country.valid && country.touched" class="help-block"
+        >{{ 'ChooseCountryValidation' | translate }}
+      </span>
+
+      <div class="form-group">
+        <label style="width: 100%">
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            ngModel
+            name="email"
+            placeholder="{{ 'Email' | translate }}"
+            #email="ngModel"
+            required
+            email
+            [disabled]="isLoading"
+          />
+        </label>
+      </div>
+      <span *ngIf="!email.valid && email.touched" class="help-block"
+        >{{ 'EmailValidation' | translate }}</span
+      >
+
+      <div class="form-group">
+        <label style="width: 100%">
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            ngModel
+            name="password"
+            placeholder="{{ 'Password' | translate }}"
+            #password="ngModel"
+            required
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
+            [disabled]="isLoading"
+          />
+        </label>
+      </div>
+      <span *ngIf="!password.valid && password.touched" class="help-block"
+        >{{ 'PasswordValidation' | translate }}
+      </span>
+
+      <div class="form-group">
+        <label style="width: 100%">
+          <input
+            type="password"
+            id="confirmPassword"
+            class="form-control"
+            ngModel
+            name="confirmPassword"
+            placeholder="{{ 'ConfPassword' | translate }}"
+            #confirmPassword="ngModel"
+            required
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
+            [ngClass]="{
+              isNotConfirmed: password.value !== confirmPassword.value
+            }"
+            [disabled]="isLoading"
+          />
+        </label>
+      </div>
+      <span
+        *ngIf="!confirmPassword.valid && confirmPassword.touched"
+        class="help-block"
+        >{{ 'PasswordValidation' | translate }}<br
+      /></span>
+      <span
+        *ngIf="
+          confirmPassword.touched && password.value !== confirmPassword.value
+        "
+        >{{ 'PasswordsShouldMatch' | translate}}</span
+      >
+
+      <div class="submit">
+        <button
+          class="btn btn-register"
+          type="submit"
+          [disabled]="
+            !regForm.valid ||
+            password.value !== confirmPassword.value ||
+            isLoading
+          "
+        >
+          {{ "SignUp" | translate }}
+        </button>
+      </div>
+
+      <div class="login">
+        <a routerLink="/login">{{ "AlreadyHaveAccount" | translate }}</a>
+      </div>
+    </form>
+  </div>
+</div>

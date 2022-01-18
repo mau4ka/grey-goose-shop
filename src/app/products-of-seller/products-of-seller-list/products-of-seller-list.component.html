@@ -1,0 +1,71 @@
+<div class="row mb-3 manage-products">
+	<div class="col-sm-4 col-12 sort">
+		<form>
+			<div class="form-group">
+	      <select 
+	      	name="sortProducts"
+	      	class="form-select text-white" 
+	      	id="sortProducts"
+	      	ngModel
+	      	#sortProducts="ngModel" 
+	      	(click)="onSortProducts(sortProducts.value)"
+	      	>
+	      	<option value="" label="{{ 'SortBy' | translate }}... " selected="selected">{{ 'SortBy' | translate }}</option>
+					<option value="priceAc">{{ 'Price' | translate }} (&#8593;)</option>
+					<option value="priceDes">{{ 'Price' | translate }} (&#8595;)</option>
+					<option value="nameAc">{{ 'ProductName' | translate }} (&#8593;)</option>
+					<option value="nameDes">{{ 'ProductName' | translate }} (&#8595;)</option>
+	      </select>
+	    </div>
+		</form>
+	</div>
+	<div class="col-sm-8 col-12 price">
+		<form #priceRange="ngForm" (ngSubmit)="onPriceRange(priceRange)">
+			<div class="form-group">
+	    	<label class="text-white" #inputPriceFrom for="priceFrom">{{ 'PriceFrom' | translate }}</label>
+	    	<input 
+	    	type="number" 
+	    	name="priceFrom" 
+	    	id="priceFrom" 
+	    	class="form-control" 
+	    	#inputFrom
+	    	#priceFrom="ngModel" 
+	    	ngModel>
+	    	<label class="text-white" for="priceTo">{{ 'To' | translate }}</label>
+	    	<input 
+	    	type="number" 
+	    	name="priceTo" 
+	    	id="priceTo" 
+	    	class="form-control"
+	    	#inputTo
+	    	#priceTo="ngModel"
+	    	ngModel>
+	    </div>
+	    <div>
+	    	<button class="btn btn-success" type="submit">{{ 'Ok' | translate }}</button>
+	    	<button class="btn btn-danger" type="button" (click)="onReset(priceRange)">{{ 'Reset' | translate }}</button>
+	    </div>
+	  </form>
+	</div>
+</div>
+<div *ngIf="!noProducts" class="row d-flex" style="flex-wrap: wrap;">
+	<app-products-of-seller-item
+		*ngFor="let productEl of products"
+		[product]="productEl"
+		[ngClass]="{'col-sm-3': true, 'mb-3': true}"
+		[ngStyle]="{'min-width': '180px'}"
+		
+	></app-products-of-seller-item>
+</div>
+<div *ngIf="noProducts" class="row d-flex noProducts" style="flex-wrap: wrap;">
+	<div class="col-sm-7 text-center">{{ 'EmptyCategory' | translate }}</div>
+</div>
+<div
+  *ngIf="!products.length"
+  class="row d-flex noProducts"
+  style="flex-wrap: wrap"
+>
+  <div class="w-100 text-center">
+    <h2 class="text-center">{{ 'EmptyCategory' | translate }}</h2>
+  </div>
+</div>

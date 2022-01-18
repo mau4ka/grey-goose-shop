@@ -1,0 +1,13 @@
+<div class="d-flex flex-column product-item" routerLink="/product/{{product.id}}">
+	<div class="text-center mb-2">
+		<img 
+			src="{{product.photo}}" 
+			alt="product pic"
+			class="img-responsive" 
+		>
+	</div>
+	<h5 class="text-center">{{ product.name }}</h5>
+	<span class="text-center">{{ product.description }}</span>
+	<span class="text-center price">{{ product.price | currency}} </span>
+	<span class="text-center">{{ product.created | date}} </span>
+</div>

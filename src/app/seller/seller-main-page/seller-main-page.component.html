@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="container mt-5" *ngIf="seller">
+    <div class="imgWrapper">
+      <img class="mw-100" src="{{ seller.photo || 'assets/no_image.png' }}" alt="" /> <br />
+      <button routerLink="/seller/logo" class="btn">{{ 'ChangeLogo' | translate }}</button>
+    </div>
+    <div class="infoWrapper">
+      <h1 class="text-center">
+        {{ seller!.name }}
+      </h1>
+      <div class="text-center">
+        <button routerLink="/seller/updateSeller" class="btn">
+          {{ 'ChangeProfile' | translate }}
+        </button>
+        <button (click)="deleteSeller()" class="btn bg-danger">{{ 'DeleteProfile' | translate }}</button>
+      </div>
+
+
+      <p>{{ 'Email' | translate }}: {{ seller!.email }}</p>
+      <p>{{ 'Mobile' | translate }}: {{ seller!.mobile }}</p>
+      <p>{{ 'Country' | translate }}: {{ seller!.country }}</p>
+      <p>{{ 'Address' | translate }}: {{ seller!.address }}</p>
+      <div class="text-center">
+        <button routerLink="/products/{{ seller!.id }}" class="btn">
+          {{ 'MyProducts' | translate }}
+        </button>
+        <button routerLink="/seller/add" class="btn">{{ 'AddProduct' | translate }}</button>
+      </div>
+    </div>
+    </div>
+</div>

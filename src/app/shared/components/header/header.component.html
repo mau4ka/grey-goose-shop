@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div routerLink="/" class="navbar-brand text-center">
+      <img src="/assets/logo.jpg" alt="" />
+    </div>
+    <button
+      type="button"
+      class="navbar-toggler"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbar()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      [ngClass]="{ show: navbarOpen }"
+      id="navbarNav"
+    >
+      <ul class="me-auto"></ul>
+      <ul class="navbar-nav navbar-right" (click)="closeNavbar()">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >{{ 'Sellers' | translate }}</a
+          >
+        </li>
+
+        <li *ngIf="auth.isLogin() && localStorage.getItem('grey-role') === 'seller'" class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/products/{{ localStorage.getItem('grey-id') }}"
+            routerLinkActive="active"
+            >{{ 'MyProducts' | translate }}</a
+          >
+        </li>
+        <li *ngIf="auth.isLogin() && localStorage.getItem('grey-role') === 'seller'" class="nav-item">
+          <a class="nav-link" routerLink="/seller" routerLinkActive="active"
+            >{{ 'MyPage' | translate }}</a
+          >
+        </li>
+        <li *ngIf="auth.isLogin() && localStorage.getItem('grey-role') === 'buyer'" class="nav-item">
+          <a class="nav-link" routerLink="/buyer" routerLinkActive="active"
+            >{{ 'MyPage' | translate }}</a
+          >
+        </li>
+        <li *ngIf="!auth.isLogin()" class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active"
+            >{{ 'Login' | translate }}</a
+          >
+        </li>
+        <li *ngIf="!auth.isLogin()" class="nav-item">
+          <a class="nav-link" routerLink="/register" routerLinkActive="active"
+            >{{ 'SignUp' | translate }}</a
+          >
+        </li>
+        <li *ngIf="auth.isLogin()" class="nav-item">
+          <a class="nav-link" style="cursor: pointer" (click)="onLogout()"
+            >{{ 'Logout' | translate }}</a
+          >
+        </li>
+        <li class="nav-item">
+          <span class="form-inline">
+            <select 
+              class="form-control" 
+              #selectedLang
+              (change)="switchLanguage(selectedLang.value)">
+                <option 
+                  *ngFor="let language of translate.getLangs()"
+                  [value]='language'
+                  [selected]="language === translate.currentLang">
+                    {{ language }}
+                  </option>
+              </select>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

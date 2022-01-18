@@ -1,0 +1,153 @@
+<div class="wrapper">
+  <div class="container" *ngIf="user">
+    <h2>{{ 'ChangeProfile' | translate }}</h2>
+    <form class="centerCard" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group"
+           [ngClass]="{
+          invalid: form.get('name')!.touched && form.get('name')!.invalid
+        }">
+        <input id="name"
+               type="text"
+               formControlName="name"
+               placeholder="{{ 'Name' | translate }} *"
+               class="form-control" />
+        <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+             class="validation">
+          <small *ngIf="form.get('name')!.errors!['required']">
+            Enter name
+          </small>
+          <small *ngIf="form.get('name')!.errors!['minlength']">
+            Name must have at least 3 symbols
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{
+          invalid: form.get('email')!.touched && form.get('email')!.invalid
+        }">
+        <input id="email"
+               type="email"
+               formControlName="email"
+               placeholder="{{ 'Email' | translate }} *"
+               class="form-control" />
+        <div class="validation"
+             *ngIf="form.get('email')!.touched && form.get('email')!.invalid">
+          <small *ngIf="form.get('email')!.errors!['required']">
+            Enter email
+          </small>
+          <small *ngIf="form.get('email')!.errors!['email']">
+            Enter real email
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{
+          invalid: form.get('mobile')!.touched && form.get('mobile')!.invalid
+        }">
+        <input id="mobile"
+               type="text"
+               formControlName="mobile"
+               placeholder="{{ 'Mobile' | translate }} *"
+               class="form-control" />
+        <div class="validation"
+             *ngIf="form.get('mobile')!.touched && form.get('mobile')!.invalid">
+          <small *ngIf="form.get('mobile')!.errors!['required']">
+            Enter mobile
+          </small>
+          <small *ngIf="form.get('mobile')!.errors!['pattern']">
+            Enter real mobile
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{
+          invalid: form.get('country')!.touched && form.get('country')!.invalid
+        }">
+        <select name="country"
+                class="form-control"
+                id="country"
+                formControlName="country">
+          <option value="" disabled selected>{{ 'ChooseCountry' | translate }} ... *</option>
+  				<option value="Armenia">{{ 'Armenia' | translate }}</option>
+  				<option value="Belarus">{{ 'Belarus' | translate }}</option>
+  				<option value="Hungary">{{ 'Hungary' | translate }}</option>
+  				<option value="Kazakhstan">{{ 'Kazakhstan' | translate }}</option>
+  				<option value="Russia">{{ 'Russia' | translate }}</option>
+  				<option value="Ukraine">{{ 'Ukraine' | translate }}</option>
+        </select>
+        <div class="validation"
+             *ngIf="form.get('country')!.touched && form.get('country')!.invalid">
+          <small *ngIf="form.get('country')!.errors!['required']">
+            Choose country
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{
+          invalid: form.get('address')!.touched && form.get('address')!.invalid
+        }">
+        <input id="address"
+               type="text"
+               formControlName="address"
+               placeholder="{{ 'Address' | translate }} *"
+               class="form-control" />
+        <div class="validation"
+             *ngIf="form.get('address')!.touched && form.get('address')!.invalid">
+          <small *ngIf="form.get('address')!.errors!['required']">
+            Enter address
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{
+          invalid:
+            form.get('facebook')!.touched &&
+            form.get('facebook')!.invalid
+        }">
+        <input id="facebook"
+               type="text"
+               formControlName="facebook"
+               placeholder="{{ 'Facebook' | translate }}"
+               class="form-control"
+               ng-required="true" />
+      </div>
+      <div class="form-group"
+           [ngClass]="{
+          invalid:
+            form.get('instagram')!.touched &&
+            form.get('instagram')!.invalid
+        }">
+        <input id="instagram"
+               type="text"
+               formControlName="instagram"
+               placeholder="{{ 'Instagram' | translate }}"
+               class="form-control"
+               ng-required="true" />
+      </div>
+      <div class="form-group"
+           [ngClass]="{
+          invalid:
+            form.get('telegram')!.touched &&
+            form.get('telegram')!.invalid
+        }">
+        <input id="telegram"
+               type="text"
+               formControlName="telegram"
+               placeholder="{{ 'Telegram' | translate }}"
+               class="form-control"
+               ng-required="true" />
+      </div>
+
+      <div class="submit">
+        <button type="submit" class="btn btn-login" [disabled]="form.invalid">
+          {{ 'Submit' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

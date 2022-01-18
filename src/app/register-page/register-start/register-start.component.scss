@@ -1,0 +1,74 @@
+.wrapper {
+  background-image: url('/assets/backgrounds/registerBg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  //background-attachment: fixed;
+  min-height: calc(100% - 102px);
+  padding-top: 100px;
+}
+.registerStart {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 1rem 2rem 2rem;
+  background-color: #8fc23f;
+  border-radius: 10px;
+}
+h2 {
+  margin-bottom: 1.5rem
+}
+
+.registerBtn {
+  display: flex;
+  justify-content: space-around;
+
+  button {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    background-color: #004a31;
+    color: white;
+    border: none;
+
+    &:hover {
+      background-color: #00583b;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .wrapper {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: unset;
+    padding-top: 0;
+    min-height: calc(100% - 65px);
+    background-color: #8fc23f;
+
+    .registerStart {
+      border-radius: 0;
+      padding: 3rem 2rem;
+      text-align: center;
+
+      h2 {
+        margin-bottom: 3rem;
+      }
+
+      .registerBtn {
+        flex-direction: column;
+        align-items: center;
+
+        button {
+          width: fit-content;
+          margin-bottom: 25px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 577px) and (max-width: 991px) {
+  .wrapper {
+    min-height: calc(100% - 65px);
+  }
+}

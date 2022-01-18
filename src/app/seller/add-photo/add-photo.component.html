@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <div class="container">
+    <h2>{{ 'AddShopLogo' | translate }}</h2>
+    <form class="centerCard" [formGroup]="form" (ngSubmit)="submit()">
+      <div
+        class="form-group"
+        [ngClass]="{
+          invalid: form.get('img')!.touched && form.get('img')!.invalid
+        }"
+      >
+        <input
+          id="img"
+          type="file"
+          formControlName="img"
+          placeholder="LOGO"
+          class="form-control"
+          (change)="onSelectFile($event)"
+        />
+        <div
+          class="validation"
+          *ngIf="form.get('img')!.touched && form.get('img')!.invalid"
+        >
+          <small *ngIf="form.get('img')!.errors!['required']">
+            {{ 'AddShopLogo' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div class="w-100 p-3 text-center">
+        <img [src]="url" class="mw-100" /> <br />
+      </div>
+
+      <div class="submit">
+        <button type="submit" class="btn btn-add" [disabled]="form.invalid">
+          {{ 'Submit' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

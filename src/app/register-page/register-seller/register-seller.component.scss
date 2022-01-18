@@ -1,0 +1,160 @@
+.wrapper {
+	background-image: url('/assets/backgrounds/vendorBg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+  min-height: calc(100% - 102px);
+  padding-top: 50px;
+  display: flex;
+	justify-content: flex-end;
+}
+.container {
+	color: white;
+	margin: 0 10% 0 0;
+  max-width: 350px;
+  padding: 1rem 2rem;
+  background-color: #8fc23f;
+  border-radius: 10px;
+  height: fit-content;
+  position: relative;
+
+  .spinner {
+		position: absolute;
+		left: 0;
+		right: 0;
+  }
+	.registerBuyer {
+		text-align: right;
+
+	a {
+			color: white;
+		}
+	}
+
+	h2 {
+		font-weight: bold;
+		font-size: 3rem;
+		margin-bottom: 1rem;
+		text-align: center;
+	}
+
+	form {
+		.form-group {
+			position: relative;
+		}
+
+		input, select {
+			width: 100%;
+	    padding: 0.3rem 0.6rem;
+	    border: none;
+	    margin-top: 1rem;
+	    color: #8fc23f;
+	    font-weight: bold;
+	    outline: none;
+	    background-color: white;
+	    font-size:14px;
+		}
+
+		select {
+			cursor: pointer;
+		}
+
+		input::placeholder, option {
+			color: #8fc23f;
+			font-weight: bold;
+			font-size: 14px;
+		}
+
+		input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, .isNotConfirmed.ng-touched {
+		  border: 1px solid red;
+		}
+
+		label::after {
+			content: "*";
+	    color: #8fc23f;
+	    position: absolute;
+	    top: 16px;
+	    right: 6px;
+		}
+
+		span {
+			font-size: 0.8rem
+		}
+
+		.submit {
+			text-align: center;
+
+			.btn-register {
+				padding: 0.5rem 1rem;
+	    	cursor: pointer;
+		    border-radius: 10px;
+		    font-size: 1rem;
+		    background-color: #004a31;
+		    color: white;
+		    border: none;
+		    margin-top: 1rem;
+		    text-align: center;
+
+		    &:hover {
+		      background-color: #00583b;
+		    }
+
+		    &:disabled {
+		    	background-color: #004a3191;
+
+		    	&:hover {
+		    		background-color: #004a3191;
+		    		cursor: text;
+		    	}
+		    }
+			}
+		}
+	}
+
+	.login {
+		text-align: left;
+		margin-top: 1rem;
+
+		a {
+			color: white;
+		}
+	}	
+}
+
+@media screen and (max-width: 575px) {
+	.wrapper {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: unset;
+    padding-top: 0;
+    min-height: calc(100% - 65px);
+    background-color: #8fc23f;
+
+    .container {
+    	margin: 0 auto;
+    }
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+	.wrapper {
+		min-height: calc(100% - 65px);
+		background-position-x: right; 
+		padding-top: 0;
+
+		div.container {
+			margin: 0 auto;
+		}
+	}
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+	.wrapper {
+		min-height: calc(100% - 65px);
+		padding-top: 0;
+
+		.container {
+			margin: 0 7% 00 ;
+		}
+	}
+}

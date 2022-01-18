@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash');
+.tableImg {
+  width: 150px;
+}
+
+.countryMap {
+  width: 45%;
+}
+
+.wrapper {
+  min-height: calc(100% - 102px);
+  background-image: url(/assets/backgrounds/sellersBackground.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 20px;
+}
+
+.main-text {
+  padding: 30px 50px;
+  border-radius: 10px;
+  background-color: rgb(234 234 234 / 75%);
+
+  h1 {
+    font-family: "Berkshire Swash", cursive;
+    color: #00583b;
+    text-shadow: rgb(255, 255, 255) 2px 2px 2px;
+    margin-bottom: 2rem;
+  }
+
+  h4 {
+    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 2rem
+  }
+  h5 {
+    font-style: italic;
+    text-align: justify;
+    margin-bottom: 2rem;
+  }
+}
+
+select {
+  width: 250px;
+  background: #00583b;
+  color: white;
+}
+
+.countryInfoWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 50px 0;
+}
+
+.tableContainer {
+  margin: 0;
+  width: 45%;
+  padding: 50px;
+}
+
+table {
+  background: white;
+  border-radius: 20px;
+
+  th {
+    p {
+      background: #00583b;
+      margin: 0;
+      border-radius: 5px;
+      padding: 2px 5px;
+      color: white;
+    }
+  }
+
+  td {
+    text-align: center;
+  }
+
+  .tableName {
+    width: 30%;
+  }
+
+
+
+  tr {
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  tr:last-child {
+    border-bottom: transparent;
+  }
+}
+
+.searchWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 20px 20px 20px;
+
+  .search {
+    background: #ccc;
+    border-radius: 5px;
+
+    input,
+    button {
+      background: transparent;
+      color: #00583b;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .countryInfoWrapper {
+    flex-direction: column;
+
+    .countryMap,
+    .tableContainer {
+      width: 100%;
+    }
+  }
+
+  select {
+    margin: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  .wrapper {
+    min-height: calc(100% - 65px);
+  }
+}

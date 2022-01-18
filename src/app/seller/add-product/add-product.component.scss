@@ -1,0 +1,102 @@
+.wrapper {
+  background-image: url(https://wallpapercave.com/wp/wp6865841.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: calc(100% - 102px);
+  padding-top: 100px;
+
+  .container {
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 1rem 2rem 2rem;
+    background-color: #8fc23f;
+    border-radius: 10px;
+    color: white;
+
+    h2 {
+      font-weight: bold;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    form {
+
+      input,
+      select, textarea {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        border: none;
+        margin-top: 1rem;
+        color: #8fc23f;
+        font-weight: bold;
+        outline: none;
+        background-color: white
+      }
+
+      select {
+        cursor: pointer;
+      }
+
+      input::placeholder,
+      option, textarea::placeholder {
+        color: #8fc23f;
+        font-weight: bold;
+      }
+
+      input.ng-invalid.ng-touched,
+      select.ng-invalid.ng-touched,
+      .isNotConfirmed.ng-touched {
+        border: 1px solid red;
+      }
+
+      span {
+        font-size: 0.8rem
+      }
+
+      .submit {
+        text-align: center;
+
+        .btn-login {
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          border-radius: 10px;
+          font-size: 1.2rem;
+          background-color: #004a31;
+          color: white;
+          border: none;
+          margin-top: 1rem;
+          text-align: center;
+
+          &:hover {
+            background-color: #00583b;
+          }
+
+          &:disabled {
+            background-color: #004a3191;
+
+            &:hover {
+              background-color: #004a3191;
+              cursor: text;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+  
+.regButton {
+  text-align: left;
+  margin-top: 2rem;
+
+  a {
+    color: white;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .wrapper {
+    min-height: calc(100% - 65px)
+  }
+}

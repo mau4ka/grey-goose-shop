@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <div class="container">
+    <h2>{{ 'Login' | translate }}</h2>
+    <div *ngIf="isLoading">
+      <app-preloader></app-preloader>
+    </div>
+    <div class="alert alert-danger" *ngIf="auth.error$ | async as error">
+      {{ error }}
+    </div>
+    <form *ngIf="!isLoading" class="centerCard" [formGroup]="form" (ngSubmit)="submit()">
+      <div
+        class="form-group"
+        [ngClass]="{
+          invalid: form.get('email')!.touched && form.get('email')!.invalid
+        }"
+      >
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="{{ 'Email' | translate }} *"
+          class="form-control"
+        />
+        <div
+          *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
+          class="validation"
+        >
+          <small *ngIf="form.get('email')!.errors!['required']">
+            {{ 'EnterEmail' | translate }}
+          </small>
+          <small *ngIf="form.get('email')!.errors!['email']">
+            {{ 'EmailValidation' | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          invalid:
+            form.get('password')!.touched && form.get('password')!.invalid
+        }"
+      >
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="{{ 'Password' | translate }} *"
+          class="form-control"
+        />
+        <div
+          class="validation"
+          *ngIf="form.get('password')!.touched && form.get('password')!.invalid"
+        >
+          <small *ngIf="form.get('password')!.errors!['required']">
+            {{ 'EnterPassword' | translate }}
+          </small>
+        </div>
+      </div>
+      
+      <div class="submit">
+        <button type="submit" class="btn btn-login" [disabled]="form.invalid">
+          {{ 'Login' | translate }}
+        </button>
+      </div>
+
+      <p class="regButton"><a routerLink="/register"> {{ 'NewUserQ' | translate }} {{ 'SignUp' | translate }}</a></p>
+    </form>
+  </div>
+</div>

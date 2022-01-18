@@ -1,0 +1,101 @@
+.manage-products {
+	display: flex;
+	justify-content: space-between;
+}
+
+select {
+	cursor: pointer;
+	background-color: #8fc23f;
+	border: 1px solid #8fc23f;
+    padding: 8px 10px;
+}
+
+.price {
+
+	form {
+		display: flex;
+    	justify-content: space-between;
+	    background: #8fc23f;
+	    border-radius: 5px;
+	    padding: 4px 10px;
+	    border: 1px solid #8fc23f;
+
+		div {
+			display: flex;
+
+			&:first-of-type {
+				padding-right: 10px;
+			}
+		}
+
+		input {
+			padding: 0;
+			width: 100%;
+		}
+		label {
+			display: flex;
+			align-items: center;
+
+			&:first-of-type {
+				width: 100%;
+			}
+
+			&:last-of-type {
+				padding: 0 5px;
+			}
+		}
+		button {
+			font-size: 12px;
+			margin-right: 5px;
+		}
+	}
+}
+
+.manage-products + div.noProducts {
+	justify-content: center;
+	margin-top: 4rem;
+
+	div {
+		font-size: 1.5rem;
+		background-color: white;
+		padding: 10px 20px;
+		border-radius: 10px;
+	}
+}
+
+@media screen and (max-width: 575px) {
+	.sort {
+		margin-bottom: 1rem;
+	}
+
+	.price form {
+		input {
+			padding-left: 5px;
+		}
+	}
+}
+
+@media screen and (min-width: 576px) {
+  .manage-products + div {
+  	justify-content: space-evenly
+  }
+
+  .sort, .price {
+  	width: 100%;
+  }
+  .sort {
+  	margin-bottom: 1rem
+  }
+
+  .price {
+  	form input {
+  		width: 75%;
+  	}
+  }
+}
+
+@media screen and (min-width: 768px) {
+	.manage-products + div {
+  	justify-content: flex-start
+  }
+}

@@ -1,0 +1,119 @@
+.wrapper {
+	background-image: url('/assets/backgrounds/products-page-bg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+  min-height: calc(100% - 102px);
+  padding-top: 3rem;
+  
+  .sellerPhoto {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  .sellerInfo {
+    background-color: #8fc23f;
+    border-radius: 10px;
+    margin-right: 0px;
+    padding-top: 15px;
+    margin-bottom: 2rem;
+
+    .sellerDetails {
+      padding-left: 1.5rem;
+      color: white;
+      font-weight: bold;
+
+      h3 {
+        font-weight: bold;
+      }
+    }
+      
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  }
+  .catalog-md {
+    background-color: #8fc23f;
+    padding-top: 20px;
+    border-radius: 10px;
+    height: fit-content;
+
+    h3 {
+      color: #004a31;
+      font-weight: 600;
+      padding: 0 1rem;
+    }
+
+    hr {
+      height: 3px;
+      background-color: #004a31;
+      border-color: #004a31;
+      margin: 0.5rem 0.75rem;
+      opacity: 0.75;
+    }
+
+    .list-group-item {
+      color: white;
+      background-color: #8fc23f;
+      border: none;
+
+      &:hover {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+
+    .list-group-item.active {
+      background-color: #8fc23f;
+      border-color: #8fc23f;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }  
+}
+
+.svgWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.redFill{
+  fill: red
+}
+
+.blackFill{
+  fill: black
+}
+
+@media screen and (max-width: 575px) {
+  .wrapper {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: unset;
+    min-height: calc(100% - 58px);
+    padding: 1rem 2rem;
+
+    .sellerPhoto {
+      margin-bottom: 1rem;
+    }
+
+    .catalog-xs {
+      text-align: center;
+      margin-bottom: 1rem;
+
+      ul .list-group-item:hover, ul .list-group-item.active {
+        background-color: #8fc23f;
+        border-color: #8fc23f;
+        color: white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .wrapper {
+    min-height: calc(100% - 65px);
+  }
+}
+
+

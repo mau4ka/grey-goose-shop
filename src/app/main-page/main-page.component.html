@@ -1,0 +1,95 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<div class="wrapper">
+  <div class="container mt-5 text-center" [formGroup]="form" (change)="submit()">
+    <div class="main-text">
+      <h1>{{ 'main-header' | translate }}</h1>
+      <h4>{{ 'main-welcome' | translate }}</h4>
+      <h5>{{ 'main-text' | translate }}</h5>
+      <select
+        class="form-select form-select-lg mx-auto"
+        aria-label=".form-select-lg example"
+        id="country"
+        formControlName="country"
+      >
+        <option value="" disabled selected>{{ 'ChooseCountry' | translate }}</option>
+        <option value="Armenia">{{ 'Armenia' | translate }}</option>
+        <option value="Belarus" selected>{{ 'Belarus' | translate }}</option>
+        <option value="Hungary">{{ 'Hungary' | translate }}</option>
+        <option value="Kazakhstan">{{ 'Kazakhstan' | translate }}</option>
+        <option value="Russia">{{ 'Russia' | translate }}</option>
+        <option value="Ukraine">{{ 'Ukraine' | translate }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- <div class="searchWrapper" *ngIf="countryData&&countryData.length>0">
+    <div class="input-group search w-25">
+      <input
+        class="form-control border-0"
+        type="search"
+        placeholder="Search"
+        id="example-search-input"
+        #searchValue
+      />
+      <span class="input-group-append">
+        <button class="btn btn-outline-secondary border-0 ms-n5" type="button" (click)="findSeller(searchValue.value)">
+          <i class="fa fa-search"></i>
+        </button>
+      </span>
+    </div>
+  </div> -->
+
+  <div
+    *ngIf="countryData && countryData.length > 0 && !loading"
+    class="countryInfoWrapper"
+  >
+    <div class="container text-center p-3 countryMap">
+      <img src="{{ img }}" alt="country map" class="w-100" />
+    </div>
+    <div class="tableContainer">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"><p>{{ 'CompanyLogo' | translate }}</p></th>
+            <th scope="col"><p>{{ 'CompanyName' | translate }}</p></th>
+            <th scope="col"><p>{{ 'Address' | translate }}</p></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="cursor-pointer"
+            *ngFor="let seller of countryData"
+            routerLink="/products/{{ seller.id }}"
+          >
+            <td class="tableImg">
+              <img
+                class="w-100"
+                src="{{ seller.photo || 'assets/no_image.png' }}"
+                alt="Logo"
+              />
+            </td>
+            <td class="tableName">{{ seller.name }}</td>
+            <td class="tableAdress">{{ seller.address }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      (!countryData || countryData.length === 0) &&
+      form.get('country')!.value !== '' &&
+      !loading
+    "
+    class="text-center"
+  >
+    <h1>{{ 'NoSellers' | translate }}</h1>
+  </div>
+  <div *ngIf="loading && form.get('country')!.value !== ''">
+    <app-preloader></app-preloader>
+  </div>
+</div>

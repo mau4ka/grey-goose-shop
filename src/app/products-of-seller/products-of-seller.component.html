@@ -1,0 +1,104 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row sellerInfo" *ngIf="auth.isLogin(); else noLogin">
+      <div class="col-12 col-sm-3 sellerPhoto">
+        <img
+          src="{{ seller.photo || '../assets/no_image.png' }}"
+          class="img-fluid"
+        />
+      </div>
+      <div class="col-12 col-sm-9 sellerDetails">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="mb-3">{{ 'Company' | translate }}: {{ seller.name }}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <p>{{ 'Country' | translate }}: {{ seller.country | translate}}</p>
+            <p>{{ 'Address' | translate }}: {{ seller.address }}</p>
+          </div>
+          <div class="col-sm-5">
+            <p>{{ 'Mobile' | translate }}: {{ seller.mobile }}</p>
+            <p>{{ 'Email' | translate }}: {{ seller.email }}</p>
+            <div class="svgWrapper">
+              <a *ngIf="links&&links!.facebook" [href]="links.facebook" target="_blank">
+                <app-facebook-svg></app-facebook-svg>
+              </a >
+              <a *ngIf="links&&links!.instagram" [href]="links.instagram" target="_blank">
+                <app-instagram-svg></app-instagram-svg>
+              </a>
+                <a *ngIf="links&&links!.telegram" [href]="links.telegram" target="_blank">
+                  <app-telegram-svg></app-telegram-svg>
+                </a>
+            </div>
+          </div>
+          <div *ngIf="localStorage.getItem('grey-role') === 'buyer'" class="col-sm-2" (click)="setLike()">
+            <app-heart-svg [ngClass]="{'redFill': isLiked, 'blackFill': !isLiked}"></app-heart-svg>
+          </div>
+        </div>    
+      </div>
+    </div>
+	<ng-template #noLogin>
+		<h2 class="text-center"><i>{{ 'LoginPrivate' | translate }}</i></h2>
+	</ng-template>
+    <div class="row">
+      <div class="col-sm-3 catalog-md d-none d-sm-block">
+        <h3>{{ 'Catalog' | translate }}</h3>
+        <hr />
+        <ul class="list-group">
+          <li
+            style="cursor: pointer"
+            class="list-group-item"
+            *ngFor="let category of categoryList; let i = index"
+            (click)="onCategoryClick(category, i)"
+            [ngClass]="{ active: activeClass(category, selectedIndex, i) }"
+          >
+            {{ category | translate }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-sm-3 catalog-xs d-block d-sm-none">
+        <h3>{{ 'ProductCatalog' | translate }}</h3>
+        <hr />
+        <li
+          class="list-group-item"
+          #li
+          style="cursor: pointer"
+          (click)="selectCategory()"
+        >
+          {{ 'SelectCategory' | translate }}
+        </li>
+        <ul
+          class="list-group collapse"
+          [ngClass]="{ show: categoryOpen }"
+          id="collapseExample"
+        >
+          <li
+            style="cursor: pointer"
+            class="list-group-item"
+            *ngFor="let category of categoryList; let i = index"
+            (click)="onCategoryClick(category, i)"
+            [ngClass]="{ active: selectedIndex === i }"
+          >
+            {{ category }}
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="isLoading" class="col-sm-9">
+        <app-preloader></app-preloader>
+      </div>
+      <div *ngIf="!isLoading" class="col-sm-9">
+        <!-- all products here -->
+        <app-products-of-seller-list
+          [products]="products"
+          [productCategory]="productCategory"
+          [noProducts]="isNoProducts"
+        ></app-products-of-seller-list>
+      </div>
+      
+    </div>
+  </div>
+</div>
